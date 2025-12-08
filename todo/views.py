@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Todo
 
@@ -22,16 +22,31 @@ def todo_list(request):
     return render(request, "todo/todo_list.html", {"todos": todos})
 
 
+@login_required
 def todo_complete(request, pk):
+    todo = get_object_or_404(Todo, pk=pk, user=request.user)
+    todo.completed = not todo.completed
+    todo.save()
     return redirect("todo_list")
 
 
+@login_required
 def todo_delete(request, pk):
+    todo = get_object_or_404(Todo, pk=pk, user=request.user)
+    todo.delete()
     return redirect("todo_list")
 
-
+@login_required
 def todo_edit(request, pk):
-    return redirect("todo_list")
+    todo = get_object_or_404(Todo, pk=pk, user=request.user)
+
+    if request.method == "POST":
+        todo.title = request.POST.get("title")
+        todo.description = request.POST.get("description", "")
+        todo.save()
+        return redirect("todo_list")
+
+    return render(request, "todo/todo_edit.html", {"todo": todo})
 
 
 def signup(request):
