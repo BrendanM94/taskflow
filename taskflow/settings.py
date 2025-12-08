@@ -21,12 +21,14 @@ SECRET_KEY = os.environ.get(
     "django-insecure-r-@=l5+zdy&7mdsr@=_jc062)pbhqg8flhoqw50u=11a39j*89"
 )
 
-# DEVELOPMENT flag: True locally, False on Heroku
 DEVELOPMENT = os.environ.get("DEVELOPMENT", "True") == "True"
 DEBUG = DEVELOPMENT
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-# You will add your Heroku domain here later, e.g. "your-app-name.herokuapp.com"
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "taskflow-brendan-e86639abd341.herokuapp.com"]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://your-app-name-12345.herokuapp.com",
+]
 
 
 # ---------------------------
@@ -89,12 +91,10 @@ WSGI_APPLICATION = "taskflow.wsgi.application"
 # ---------------------------
 
 if "DATABASE_URL" in os.environ:
-    # On Heroku – use Postgres from DATABASE_URL
     DATABASES = {
         "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
     }
 else:
-    # Local development – use SQLite
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
