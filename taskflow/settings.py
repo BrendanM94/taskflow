@@ -24,10 +24,11 @@ SECRET_KEY = os.environ.get(
 DEVELOPMENT = os.environ.get("DEVELOPMENT", "True") == "True"
 DEBUG = DEVELOPMENT
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "taskflow-brendan-e86639abd341.herokuapp.com"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", 
+                "taskflow-brendan-e86639abd341.herokuapp.com"]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://your-app-name-12345.herokuapp.com",
+    "https://taskflow-brendan-e86639abd341.herokuapp.com",
 ]
 
 
@@ -108,18 +109,10 @@ else:
 # ---------------------------
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
-    },
-    {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator", },
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", },
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator", },
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator", },
 ]
 
 
