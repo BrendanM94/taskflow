@@ -16,10 +16,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ---------------------------
 
 # Use env var in production, fallback for local dev
-SECRET_KEY = os.environ.get(
-    "SECRET_KEY",
-    "django-insecure-r-@=l5+zdy&7mdsr@=_jc062)pbhqg8flhoqw50u=11a39j*89"
-)
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
+
 
 DEVELOPMENT = os.environ.get("DEVELOPMENT", "True") == "True"
 DEBUG = DEVELOPMENT
@@ -91,6 +89,7 @@ WSGI_APPLICATION = "taskflow.wsgi.application"
 # DATABASE
 # ---------------------------
 
+# Use Postgres on Heroku, SQLite locally
 if "DATABASE_URL" in os.environ:
     DATABASES = {
         "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))

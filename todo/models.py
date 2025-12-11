@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 
 class Todo(models.Model):
+    # Links each task to the user who created it
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)

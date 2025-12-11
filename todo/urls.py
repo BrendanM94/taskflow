@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+# URL patterns for task management
 urlpatterns = [
     path("", views.todo_list, name="todo_list"),
     path("signup/", views.signup, name="signup"),
