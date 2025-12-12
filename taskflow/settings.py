@@ -19,8 +19,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
 
 
-DEVELOPMENT = os.environ.get("DEVELOPMENT", "True") == "True"
-DEBUG = DEVELOPMENT
+DEBUG = False
+
 
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", 
                 "taskflow-brendan-e86639abd341.herokuapp.com"]
